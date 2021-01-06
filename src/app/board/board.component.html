@@ -1,1 +1,7 @@
-<p>board works!</p>
+<div>{{ status }}</div>
+<div class="board-container">
+  <app-square *ngFor="let square of squares; let i = index"
+              [value]="square"
+              (click)="handleClick(i)"
+  ></app-square>
+</div>
