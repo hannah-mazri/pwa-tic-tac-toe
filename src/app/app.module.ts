@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { SquareComponent } from './square/square.component';
 import { BoardComponent } from './board/board.component';
 import { GameComponent } from './game/game.component';
+import {NbThemeModule} from '@nebular/theme';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { GameComponent } from './game/game.component';
   ],
   imports: [
     BrowserModule,
+    NbThemeModule.forRoot(),
     AppRoutingModule
   ],
   providers: [],
