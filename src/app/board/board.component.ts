@@ -26,6 +26,31 @@ export class BoardComponent implements OnInit {
     this.squares = squares;
     this.xIsNext = !this.xIsNext;
 
-    this.status = `Next player: ${ this.xIsNext ? 'X' : 'O' }`;
+    const winner = this.calculateWinner(this.squares);
+    if (winner) {
+      this.status = `Winner is ${ winner }`;
+    } else {
+      this.status = `Next player: ${ this.xIsNext ? 'X' : 'O' }`;
+    }
+  }
+
+  calculateWinner(squares: any): any {
+    const lines = [
+      [0, 1, 2],
+      [3, 4, 5],
+      [6, 7, 8],
+      [0, 3, 6],
+      [1, 4, 7],
+      [2, 5, 8],
+      [0, 4, 8],
+      [2, 4, 6],
+    ];
+    for (let i = 0; i < lines.length; i++) {
+      const [a, b, c] = lines[i];
+      if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
+        return squares[a];
+      }
+    }
+    return null;
   }
 }
