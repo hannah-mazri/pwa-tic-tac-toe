@@ -7,38 +7,34 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BoardComponent implements OnInit {
   squares: any;
-  status = 'Next player: X';
-  xIsNext = true;
+  xIsNext: any;
+  winner: any;
 
   constructor() { }
 
   ngOnInit(): any {
-    this.renderSquare();
+    this.newGame();
   }
 
-  renderSquare(): any {
+  newGame(): any {
     this.squares = Array(9).fill(null);
+    this.winner = null;
+    this.xIsNext = true;
   }
 
-  handleClick(i: any): any {
-    const squares = this.squares.slice();
-
-    if (this.calculateWinner(squares) || squares[i]) {
-      return;
-    }
-    squares[i] = this.xIsNext ? 'X' : 'O';
-    this.squares = squares;
-    this.xIsNext = !this.xIsNext;
-
-    const winner = this.calculateWinner(this.squares);
-    if (winner) {
-      this.status = `Winner is ${ winner }`;
-    } else {
-      this.status = `Next player: ${ this.xIsNext ? 'X' : 'O' }`;
-    }
+  get player(): string {
+    return this.xIsNext ? 'X' : 'O';
   }
 
-  calculateWinner(squares: any): any {
+  handleClick(i: number): any {
+    if (!this.squares[i]) {
+      this.squares.splice(i, 1, this.player);
+      this.xIsNext = !this.xIsNext;
+    }
+    this.winner = this.calculateWinner();
+  }
+
+  calculateWinner(): any {
     const lines = [
       [0, 1, 2],
       [3, 4, 5],
@@ -51,8 +47,8 @@ export class BoardComponent implements OnInit {
     ];
     for (const line of lines) {
       const [a, b, c] = line;
-      if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
-        return squares[a];
+      if (this.squares[a] && this.squares[a] === this.squares[b] && this.squares[a] === this.squares[c]) {
+        return this.squares[a];
       }
     }
     return null;
