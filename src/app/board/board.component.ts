@@ -27,7 +27,7 @@ export class BoardComponent implements OnInit {
   }
 
   handleClick(i: number): any {
-    if (!this.squares[i]) {
+    if (!this.squares[i] && !this.winner) {
       this.squares.splice(i, 1, this.player);
       this.xIsNext = !this.xIsNext;
     }
