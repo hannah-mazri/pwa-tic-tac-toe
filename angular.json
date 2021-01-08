@@ -31,7 +31,7 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.scss"
+              "node_modules/@nebular/theme/styles/prebuilt/cosmic.css"
             ],
             "scripts": []
           },
