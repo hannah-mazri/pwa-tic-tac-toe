@@ -7,6 +7,8 @@ import { SquareComponent } from './square/square.component';
 import { BoardComponent } from './board/board.component';
 import { GameComponent } from './game/game.component';
 import { NbButtonModule, NbLayoutModule, NbThemeModule } from '@nebular/theme';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [
@@ -20,7 +22,8 @@ import { NbButtonModule, NbLayoutModule, NbThemeModule } from '@nebular/theme';
     AppRoutingModule,
     NbThemeModule.forRoot({ name: 'cosmic' }),
     NbLayoutModule,
-    NbButtonModule
+    NbButtonModule,
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   providers: [],
   bootstrap: [AppComponent]
