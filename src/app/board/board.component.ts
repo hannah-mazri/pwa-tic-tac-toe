@@ -9,6 +9,7 @@ export class BoardComponent implements OnInit {
   squares: any;
   xIsNext: any;
   winner: any;
+  isTie: boolean;
 
   constructor() { }
 
@@ -50,6 +51,9 @@ export class BoardComponent implements OnInit {
       if (this.squares[a] && this.squares[a] === this.squares[b] && this.squares[a] === this.squares[c]) {
         return this.squares[a];
       }
+    }
+    if  (this.squares.every(square => square !== null)) {
+      this.isTie = true;
     }
     return null;
   }
